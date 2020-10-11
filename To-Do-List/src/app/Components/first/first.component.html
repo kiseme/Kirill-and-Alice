@@ -1,1 +1,5 @@
-<p>first works!</p>
+<div *ngFor="let todo of todos">
+    <h3>{{todo.name}}</h3>
+    <p>{{todo.description}}</p>
+    <hr />
+</div>
