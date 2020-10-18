@@ -12,9 +12,13 @@ export class TodosService{
           done: false
         }
       ];
+
+    public selectedTodo: {} = {}
       
     getTodos(): {}[] {
           
         return this.todos;
     }
+
+
 }

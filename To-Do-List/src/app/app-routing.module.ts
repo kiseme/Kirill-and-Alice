@@ -1,7 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-const routes: Routes = [];
+import { FirstComponent } from './Components/first/first.component'
+import {ViewTodoComponent} from './Components/view-todo/view-todo.component'
+const routes: Routes = [
+  {
+    path:'/',
+    component: FirstComponent
+  },
+  {
+    path:'/viewtodo',
+    component: ViewTodoComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
