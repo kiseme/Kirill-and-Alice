@@ -1,22 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import {TodosService} from './todos.service';
 
 @Component({
   selector: 'app-first',
   templateUrl: './first.component.html',
-  styleUrls: ['./first.component.scss']  
+  styleUrls: ['./first.component.scss'],
+  providers: [TodosService]
 })
 export class FirstComponent {
-  title = 'To Do List';
-  todos = [
-    {
-      name: 'Buy milk',
-      description: 'Go to shop and buy milk',
-      done: false
-    },
-    {
-      name: 'Buy bread',
-      description: 'Go to shop and buy bread',
-      done: false
-    }
-  ]
+  items: {}[] = [];
+  constructor(private todosService: TodosService){}
+  ngOnInit(){
+    this.items = this.todosService.getTodos();
+  }
 }
