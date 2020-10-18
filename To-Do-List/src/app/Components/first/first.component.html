@@ -1,5 +1,7 @@
-<div *ngFor="let todo of todos">
-    <h3>{{todo.name}}</h3>
-    <p>{{todo.description}}</p>
-    <hr />
+<div>
+    <table>
+    <tr *ngFor="let item of items">
+        <td>{{item}}</td>
+    </tr>
+    </table>
 </div>
