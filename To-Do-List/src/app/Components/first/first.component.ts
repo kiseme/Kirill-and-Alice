@@ -10,7 +10,8 @@ import {Router} from '@angular/router';
 })
 export class FirstComponent {
   items: {}[] = [];
-  constructor(private todosService: TodosService){}
+  selectedTodo: {} = {}
+  constructor(private todosService: TodosService, private router: Router){}
 
   ngOnInit(){
     this.items = this.todosService.getTodos();
@@ -18,6 +19,6 @@ export class FirstComponent {
 
   GotoTodo(item) {
     this.selectedTodo = item;
-    this.router.navigateByUrl('/viewtodo');
+    this.router.navigate(['/viewtodo', item.id]);
   }
 }
