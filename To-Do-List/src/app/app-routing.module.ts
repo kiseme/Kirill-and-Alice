@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FirstComponent } from './Components/first/first.component'
 import { ViewTodoComponent } from './Components/view-todo/view-todo.component'
-import { StatusComponent } from './Components/status/status.component'
-import { FirstGuard } from './first.guard'
 const routes: Routes = [
   {
     path: '',
@@ -12,11 +10,6 @@ const routes: Routes = [
   {
     path: 'viewtodo/:id',
     component: ViewTodoComponent
-  },
-  {
-    path: 'status',
-    component: StatusComponent,
-    canActivate: [FirstGuard]
   }
 ];
 

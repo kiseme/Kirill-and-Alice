@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {TodosService} from './todos.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-first',
@@ -10,15 +9,25 @@ import {Router} from '@angular/router';
 })
 export class FirstComponent {
   items: {}[] = [];
-  selectedTodo: {} = {}
-  constructor(private todosService: TodosService, private router: Router){}
+  selectedTodo: {} = {}  
+  isAuth: boolean
+
+  constructor(private todosService: TodosService){}
 
   ngOnInit(){
     this.items = this.todosService.getTodos();
   }
 
   GotoTodo(item) {
-    this.selectedTodo = item;
-    this.router.navigate(['/viewtodo', item.id]);
+    this.todosService.GotoTodo(item)
   }
+
+  login() {
+    this.todosService.logIn()
+  }
+  getAuth() {
+    this.isAuth = this.todosService.getAuth()
+    return this.isAuth
+  }
+  
 }

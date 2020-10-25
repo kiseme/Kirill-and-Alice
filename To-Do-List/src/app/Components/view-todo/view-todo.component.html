@@ -1,1 +1,3 @@
-<p>вью туду воркс!</p>
+<h3>{{currentTodo.name}}</h3>
+<p>{{currentTodo.description}}</p>
+<span *ngIf="isAuth==='true'">Done: {{currentTodo.done}}</span>

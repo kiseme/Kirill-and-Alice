@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute, Route} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +8,6 @@ import {ActivatedRoute, Route} from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(private route: ActivatedRoute){}
-
   title = 'To-Do-List';
-  isAuth = false
-  login() {
-    console.log(this.route.snapshot.paramMap.get('id'));
-    this.isAuth = true
-  }
+
 }
