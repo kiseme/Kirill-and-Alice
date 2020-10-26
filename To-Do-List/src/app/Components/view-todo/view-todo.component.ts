@@ -5,8 +5,7 @@ import {ActivatedRoute} from "@angular/router"
 @Component({
   selector: 'app-view-todo',
   templateUrl: './view-todo.component.html',
-  styleUrls: ['./view-todo.component.scss'],
-  providers: [TodosService]
+  styleUrls: ['./view-todo.component.scss']
 })
 export class ViewTodoComponent implements OnInit {
   currentId: Number
@@ -14,21 +13,11 @@ export class ViewTodoComponent implements OnInit {
   isAuth: boolean
   constructor(private todosService: TodosService, private readonly activatedRoute: ActivatedRoute){}
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(id => {
-      this.getCurrentTodo(id.id)
-      this.isAuth = id.isAuth
-    })
+  ngOnInit(): void {    
+    this.currentTodo = this.todosService.getCurrentTodo()
+    this.isAuth = this.todosService.getAuth()
   }
 
-  getCurrentTodo(id) {
-    let todos = this.todosService.getTodos()
-    for (let i in todos) {
-      if (todos[i].id.toString() === id) {
-        this.currentTodo = todos[i]
-      }
-    }
-  }
   
 
 }

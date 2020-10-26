@@ -5,7 +5,6 @@ import {TodosService} from './todos.service';
   selector: 'app-first',
   templateUrl: './first.component.html',
   styleUrls: ['./first.component.scss'],
-  providers: [TodosService]
 })
 export class FirstComponent {
   items: {}[] = [];

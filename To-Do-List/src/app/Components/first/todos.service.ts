@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 
+interface Todo {
+  name?: string,
+  description?: string,
+  done?: boolean,
+  id?: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class TodosService{
 
     private todos: {}[] = [
@@ -21,7 +29,8 @@ export class TodosService{
         }
       ];
     private isAuth = false
-    public selectedTodo: {} = {}
+    
+    public selectedTodo:Todo
 
     constructor(private router: Router){}
     getTodos(): {}[] {
@@ -29,7 +38,7 @@ export class TodosService{
     }
     GotoTodo(item) {
       this.selectedTodo = item;
-      this.router.navigate(['/viewtodo', item.id, {isAuth: this.isAuth}]);
+      this.router.navigate(['/viewtodo', item.id]);
     }
 
     logIn() {
@@ -38,6 +47,9 @@ export class TodosService{
 
     getAuth():boolean {
       return this.isAuth
+    }
+    getCurrentTodo():{} {
+      return this.selectedTodo
     }
 
 
