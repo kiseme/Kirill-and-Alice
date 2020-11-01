@@ -7,8 +7,8 @@ import {TodosService} from './todos.service';
   styleUrls: ['./first.component.scss'],
 })
 export class FirstComponent {
-  items: {}[] = [];
-  selectedTodo: {} = {}  
+  items: {}[] = [];// Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any
+  selectedTodo: {} = {}  // Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any
   isAuth: boolean
 
   constructor(private todosService: TodosService){}
@@ -28,5 +28,5 @@ export class FirstComponent {
     this.isAuth = this.todosService.getAuth()
     return this.isAuth
   }
-  
+
 }

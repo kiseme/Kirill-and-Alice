@@ -14,7 +14,7 @@ interface Todo {
 
 export class TodosService{
 
-    private todos: {}[] = [
+    private todos: {}[] = [ // У вас же даже есть интерфейс, используйте его, а не {}
         {
           name: 'Buy milk',
           description: 'Go to shop and buy milk',
@@ -29,26 +29,27 @@ export class TodosService{
         }
       ];
     private isAuth = false
-    
+
     public selectedTodo:Todo
 
     constructor(private router: Router){}
-    getTodos(): {}[] {
+    getTodos(): {}[] { // У вас же даже есть интерфейс, используйте его, а не {}
         return this.todos;
     }
+    // Придерживайтесь camelCase для методов
     GotoTodo(item) {
       this.selectedTodo = item;
       this.router.navigate(['/viewtodo', item.id]);
     }
-
+    // Сервисы нужно чтобы изолировать логику, поэтому все методы связанные с авторизацией нужно переместить в отдельный сервис
     logIn() {
       this.isAuth = !this.isAuth
     }
 
-    getAuth():boolean {
+    getAuth():boolean { // Не обязательно специфицировать возвращаемое значение, если тип уже известен
       return this.isAuth
     }
-    getCurrentTodo():{} {
+    getCurrentTodo():{} { // У вас же даже есть интерфейс, используйте его, а не {}
       return this.selectedTodo
     }
 
