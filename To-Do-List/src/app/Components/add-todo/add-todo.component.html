@@ -1,0 +1,11 @@
+<form [formGroup]="addTodo" (ngSubmit)="onSubmit()">
+    <div class="form-item">
+        <label for="name">Название</label>
+        <input formControlName="name" id="name" type="text" />
+    </div>
+    <div class="form-item">
+        <label for="description">Описание</label>
+        <textarea formControlName="description" id="description" type="text"></textarea>
+    </div>
+    <button type="submit">Добавить</button>
+</form>
