@@ -1,4 +1,4 @@
-<button (click)=login()>{{!getAuth() ? 'Войти' : 'Выйти'}}</button>
+<button id='loginButton' (click)=login()>{{!getAuth() ? 'Войти' : 'Выйти'}}</button>
 
 <div (click)=GotoTodo(item) *ngFor="let item of items" style="cursor: pointer;">
     <h3>{{item.name}}</h3>
