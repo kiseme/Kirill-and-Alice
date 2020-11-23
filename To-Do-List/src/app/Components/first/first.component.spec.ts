@@ -29,8 +29,8 @@ describe('FirstComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('user is auth',() =>{
-    it('should be got label Exit',()=>{
+  describe('user is auth', () =>{
+    it('should be got label Exit', ()=>{
       authService.getAuth = jasmine.createSpy().and.returnValue(true);
 
       //Act
@@ -42,6 +42,22 @@ describe('FirstComponent', () => {
 
       //Assert
       expect(label.textContent).toEqual('Выйти');
+    });
+  });
+
+  describe('user is not auth', () =>{
+    it('should be got label Enter',()=>{
+      authService.getAuth = jasmine.createSpy().and.returnValue(false);
+
+      //Act
+      fixture = TestBed.createComponent(FirstComponent);
+      const label = fixture.nativeElement.querySelector('#loginButton');
+      console.log(label);
+
+      fixture.detectChanges();
+
+      //Assert
+      expect(label.textContent).toEqual('Войти');
     });
   });
 });
