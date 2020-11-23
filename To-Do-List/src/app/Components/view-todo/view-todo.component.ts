@@ -17,7 +17,7 @@ interface Todo {
 })
 export class ViewTodoComponent implements OnInit {
   currentId: number //Лучше использовать просто number, - ИСПРАВЛЕНО
-  currentTodo: Todo // Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any - ИСПРАВЛЕНО
+  currentTodo: Todo = {} // Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any - ИСПРАВЛЕНО
   isAuth: boolean
   constructor(private todosService: TodosService, private authService: AuthService){} //Если не используете какие-то сервисы, то лучше их убирать из конструктора - ИСПРАВЛЕНО
 
