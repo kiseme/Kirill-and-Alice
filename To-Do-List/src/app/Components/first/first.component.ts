@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import {TodosService} from './todos.service';
 import {AddTodoComponent} from '../add-todo/add-todo.component';
 import {AuthService} from './auth.service'
+import {State, Store} from "@ngrx/store";
+import {LoadItems} from "../../store/actions/todos.actions";
+import { Todo } from "../../store/reducers/todos.reducers";
 
-interface Todo {
-  name?: string,
-  description?: string,
-  done?: boolean,
-  id?: number
-}
+// interface Todo {
+//   name?: string,
+//   description?: string,
+//   done?: boolean,
+//   id?: number
+// }
 
 @Component({
   selector: 'app-first',
@@ -17,13 +20,14 @@ interface Todo {
 })
 export class FirstComponent {
   items: Todo[] = [];// Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any - ИСПРАВЛЕНО
-  selectedTodo: Todo = {}  // Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any - ИСПРАВЛЕНО
+  // selectedTodo: Todo = {}  // Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any - ИСПРАВЛЕНО
   isAuth: boolean
 
-  constructor(private todosService: TodosService, private authService: AuthService){}
+  constructor(private todosService: TodosService, private authService: AuthService, private store:Store<Todo>){}
 
   ngOnInit(){
-    this.items = this.todosService.getTodos();
+    this.store.dispatch(LoadItems())
+    // this.items = this.todosService.getTodos();
   }
 
   GotoTodo(item) {

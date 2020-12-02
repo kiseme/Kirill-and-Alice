@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
+import { of } from "rxjs";
 
 interface Todo {
   name?: string,
@@ -13,6 +14,10 @@ interface Todo {
 })
 
 export class TodosService{
+    getItemAsObs() {
+        //throw new Error('Method not implemented.');
+        return of(this.getTodos());
+    }
 
     private todos: Todo[] = [ // У вас же даже есть интерфейс, используйте его, а не {} - ИСПРАВЛЕНО
         {
