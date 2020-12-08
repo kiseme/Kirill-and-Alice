@@ -1,6 +1,7 @@
 import {createAction, props} from "@ngrx/store"
-export const LoadItems = createAction('[App Component] Load Items'); 
-export const LoadItemsSuccess = createAction('[App Component] Items loaded successfully', props<{ items:Todo[] }>());
+
+export const LoadItems = createAction('[First Component] Load Items'); 
+export const LoadItemsSuccess = createAction('[First Component] Items loaded successfully', props<{ todos }>());
 
 interface Todo {
     name?: string,

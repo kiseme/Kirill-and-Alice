@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import {TodosService} from './todos.service';
 import {AddTodoComponent} from '../add-todo/add-todo.component';
 import {AuthService} from './auth.service'
 import {State, Store} from "@ngrx/store";
 import {LoadItems} from "../../store/actions/todos.actions";
 import { Todo } from "../../store/reducers/todos.reducers";
+import {selectItems, areItemsLoaded} from '../../store/selectors/todos.selectors'
 
 // interface Todo {
 //   name?: string,
@@ -18,16 +19,18 @@ import { Todo } from "../../store/reducers/todos.reducers";
   templateUrl: './first.component.html',
   styleUrls: ['./first.component.scss'],
 })
-export class FirstComponent {
-  items: Todo[] = [];// Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any - ИСПРАВЛЕНО
+export class FirstComponent implements OnInit {
+  @Input()
+  @Output()
+  items$ = this.store.select(selectItems);// Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any - ИСПРАВЛЕНО
   // selectedTodo: Todo = {}  // Лучше создать класс/интерфейс, но если действительно неизвестно, что там то использовать any - ИСПРАВЛЕНО
   isAuth: boolean
+  areItemsLoaded$ = this.store.select(areItemsLoaded)
 
   constructor(private todosService: TodosService, private authService: AuthService, private store:Store<Todo>){}
 
   ngOnInit(){
     this.store.dispatch(LoadItems())
-    // this.items = this.todosService.getTodos();
   }
 
   GotoTodo(item) {

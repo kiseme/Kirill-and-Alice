@@ -8,13 +8,15 @@ import { TodosService } from "../../Components/first/todos.service";
 @Injectable()
 export class ItemEffects {
 	loadItems$ = createEffect(() => this.actions$.pipe(
-	ofType(LoadItems),
-	mergeMap(() => this.todosService.getItemAsObs()
-		.pipe(
-		map( items => {
-            return LoadItemsSuccess({items:items})
-        }),
-        catchError(() => EMPTY)
+		ofType(LoadItems),
+		mergeMap(() => this.todosService.getItemAsObs()
+			.pipe(
+				map( items => {
+					console.log('run loaded successfuly', items);
+					
+					return LoadItemsSuccess({todos:items})
+				}),
+			catchError(() => EMPTY)
     ))));
 
 constructor(

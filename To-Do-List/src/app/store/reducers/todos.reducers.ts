@@ -1,16 +1,16 @@
 import { createFeatureSelector, createReducer, on} from "@ngrx/store";
 import { LoadItems, LoadItemsSuccess } from '../actions/todos.actions';
-//import {LoadItems, LoadItemsSuccess} from ""
 
-export const itemFeatureKey = 'items';
+export const itemFeatureKey = 'todos';
 
 export interface Todo {
-    todos: {
+  todos: {
     name?: string,
     description?: string,
     done?: boolean,
-    id?: number}[],
-    loaded: boolean
+    id?: number
+  }[],
+  loaded: boolean
 }
 
 export const initialState: Todo = {
@@ -34,14 +34,16 @@ export const initialState: Todo = {
 const _todoReducer = createReducer(
 	initialState,
 	on(LoadItems, state => {
-	 return { ...state, loaded: false }
-    }),
-    on (LoadItemsSuccess, (state, action) => {
-        return {...state, items: action.items, loaded: true}
-    })
+    console.log('load items reducer');
+    
+	   return { ...state, loaded: false }
+  }),
+  on (LoadItemsSuccess, (state, action) => {
+      return {...state, todos: action.todos, loaded: true}
+  })
 );
 
-export function itemReducer(state, action) {
+export function itemReducer(state: Todo, action) {
 	return _todoReducer(state, action);
 }
 

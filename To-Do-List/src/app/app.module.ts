@@ -7,6 +7,10 @@ import { FirstComponent } from './Components/first/first.component';
 import { ViewTodoComponent } from './Components/view-todo/view-todo.component';
 import { AddTodoComponent } from './Components/add-todo/add-todo.component';
 import { ReactiveFormsModule } from '@angular/forms'
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects'
+import { ItemEffects } from './store/effects/todos.effects'
+import { itemReducer } from './store/reducers/todos.reducers';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,10 @@ import { ReactiveFormsModule } from '@angular/forms'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(itemReducer),
+    StoreModule.forFeature('todos', itemReducer),
+    EffectsModule.forRoot([ItemEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

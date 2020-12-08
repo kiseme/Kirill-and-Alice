@@ -1,8 +1,10 @@
 <button id='loginButton' (click)=login()>{{!getAuth() ? 'Войти' : 'Выйти'}}</button>
 
-<div (click)=GotoTodo(item) *ngFor="let item of items" style="cursor: pointer;">
-    <h3>{{item.name}}</h3>
-    <p>{{item.description}}</p>
-    <hr />
+<div *ngIf="areItemsLoaded$ | async">
+    <div (click)=GotoTodo(item) *ngFor="let item of (items$ | async)" style="cursor: pointer;">
+        <h3>{{item.name}}</h3>
+        <p>{{item.description}}</p>
+        <hr />
+    </div>
 </div>
 <app-add-todo></app-add-todo>
